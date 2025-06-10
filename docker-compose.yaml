@@ -29,6 +29,10 @@ services:
     - "80:80"
     depends_on:
     - catalogue
+    - cart
+    - user
+    - shipping
+    - payment
 
   redis:
     image: redis
@@ -69,5 +73,8 @@ services:
     image: payment:1
     container_name: payment
     depends_on:
-    - rabbitmq    
+    - rabbitmq
+    - user
+    - cart
+
       
