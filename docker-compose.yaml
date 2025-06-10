@@ -1,0 +1,29 @@
+# Docker compose will create network, create volumes and then attach to the containers
+
+networks:
+  default:
+    external:
+      name: roboshop
+services:
+# below is equal to docker run -d --name mongodb --network=roboshop mongodb:1
+  mongodb:
+    image: mongodb:1
+    networks:
+    - roboshop
+
+  catalogue:
+    image: catalogue:1
+    networks:
+    - roboshop
+    depends_on:
+    - mongodb
+
+  web:
+    image: web:1
+    networks:
+      - roboshop
+    ports:
+    - "80:80"
+    depends_on:
+    - catalogue
+      
