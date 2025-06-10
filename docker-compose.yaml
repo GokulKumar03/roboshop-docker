@@ -2,8 +2,8 @@
 
 networks:
   default:
-    external:
-      name: roboshop
+    external: true
+    name: roboshop
 services:
 # below is equal to docker run -d --name mongodb --network=roboshop mongodb:1
   mongodb:
@@ -26,4 +26,6 @@ services:
     - "80:80"
     depends_on:
     - catalogue
+
+  redis:  
       
